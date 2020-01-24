@@ -1,0 +1,45 @@
+<div class="container-fluid" id="first_window" style="padding: 2%;">
+  <div class="row">
+    <div class="col-sm-12 col-lg-4"></div>
+    <div class="col-sm-12 col-lg-2"></div>
+    <div class="col-sm-12 col-lg-6">
+      <div class="container" style="float: right;">
+
+        <button (mouseout)="buttonOnMouseOver($event)" (mouseover)="buttonOnChangeCss($event)"
+                *ngIf="cookieService.get('userAuthorization') == 'true'" class="nav_button" id="uc" type="button">
+          <a routerLink='/profile' style="color: white; text-decoration: none">Особистий кабінет</a>
+        </button>
+        <button (mouseout)="buttonOnMouseOver($event)" (mouseover)="buttonOnChangeCss($event)"
+                *ngIf="cookieService.get('userAuthorization') == 'true'" class="nav_button" id="ucMes" type="button">
+          <a routerLink='/mesPage' style="color: white; text-decoration: none">Повідомлення</a>
+        </button>
+        <button (mouseout)="buttonOnMouseOver($event)" (mouseover)="buttonOnChangeCss($event)"
+                *ngIf="cookieService.get('userAuthorization') == 'true'" class="nav_button" type="button">
+          <a routerLink="/posts" style="color: white; text-decoration: none">Публікації</a>
+        </button>
+        <button (mouseout)="buttonOnMouseOver($event)" (mouseover)="buttonOnChangeCss($event)" class="nav_button"
+                id="us" type="button">
+          <a routerLink="/about" style="text-decoration: none; color: white">ПРО НАС</a>
+        </button>
+        <button (click)="displayForm('window_a')" (mouseout)="buttonOnMouseOver($event)"
+                (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == ''" class="nav_button"
+                id="aut" type="button">ВХІД
+        </button>
+        <button (click)="displayForm('window_r')" (mouseout)="buttonOnMouseOver($event)"
+                (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == ''" class="nav_button"
+                id="reg" type="button">РЕЄСТРАЦІЯ
+        </button>
+        <button (click)="logOut()" (mouseout)="buttonOnMouseOver($event)"
+                (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == 'true'" class="nav_button"
+                id="logOut" routerLink="/" type="button">Вихід
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:10%;">
+    <div class="col-sm-12 col-lg-12">
+      <img src="../../../../assets/images/icon.png" style="height: 40% ;float:left; box-shadow: 0 0 10px black;">
+      <h1 id="logo">BLOG</h1>
+    </div>
+  </div>
+</div>

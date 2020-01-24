@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-inner fixed-top">
+  <div class="d-flex m-md-auto">
+    <a class="navbar-brand" routerLink="/">
+      <img alt="" height="30" src="../../../assets/images/icon.png" width="30">
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button (click)="displayForm('window_a');
+                unDisplayForm('window_r')" (mouseout)="buttonOnMouseOver($event)"
+                (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == ''"
+                class="nav-button"
+                id="aut" type="button">ВХІД
+        </button>
+      </li>
+      <li class="nav-item">
+        <button (click)="displayForm('window_r');
+                unDisplayForm('window_a')" (mouseout)="buttonOnMouseOver($event)"
+                (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == ''"
+                class="nav-button"
+                id="reg" type="button">РЕЄСТРАЦІЯ
+        </button>
+      </li>
+      <li class="nav-item">
+        <button (mouseout)="buttonOnMouseOver($event)"
+                (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == 'true'"
+                class="nav-button" id="uc"
+                routerLink='/profile' type="button"><a>Особистий кабінет</a>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button (click)="logOut()" (mouseout)="buttonOnMouseOver($event)"
+                (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == 'true'"
+                class="nav-button" id="logOut"
+                routerLink="/" type="button">Вихід
+        </button>
+      </li>
+      <li class="nav-item">
+        <a (mouseout)="buttonOnMouseOver($event)"
+           (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == 'true'"
+           class="nav-button" routerLink="/posts"
+           style="color: white">Публікації
+        </a>
+      </li>
+      <li class="nav-item">
+        <a (mouseout)="buttonOnMouseOver($event)"
+           (mouseover)="buttonOnChangeCss($event)" *ngIf="cookieService.get('userAuthorization') == 'true'"
+           class="nav-button" routerLink="/mesPage"
+           style="color: white">Повідомлення
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<app-login></app-login>
+<app-registration></app-registration>
+<app-form-after-reg></app-form-after-reg>

@@ -1,0 +1,158 @@
+body
+{
+	width: 100%;
+	height: 100%;
+}
+div
+{
+	margin-left:0%; 
+}
+input
+{
+	 margin-left:2%; 
+}
+#first_window
+{
+	background-image:linear-gradient(
+          rgba(0, 0, 0, 0.3), 
+          rgba(0, 0, 0, 0.3)
+        ),url(images/main_f.jpg);
+	background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+}
+.nav_button
+{
+border-color: none; background-color: Transparent;
+            background-repeat:no-repeat;
+            border: none;
+            cursor:pointer;
+            overflow: hidden;
+            color: white;
+            outline:none;
+            float: right;
+}
+
+#logo
+{
+	font-size: 8vw;
+	color:white;
+	font-family: "Bodoni MT";
+	text-shadow: 1px 1px 2px black, 0 0 1em grey;
+}
+
+#second_window
+{width: 100%;
+	background-color: white;
+	vertical-align: top;
+}
+
+#main_cont
+{width: 100%;
+background-image: url(images/main_s.jpg);
+	background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+    margin: -5% 0 0 0; 
+    height: 100%;
+    padding: 13% 5% 5% 5%;
+}
+
+.c_text
+{
+margin: 3% 0 3% 0;
+
+}
+
+#third_window
+{
+	background-image:linear-gradient(
+          rgba(0, 0, 0, 0.3), 
+          rgba(0, 0, 0, 0.3)
+        ),url(images/main_t.jpg);
+	background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+}
+
+#t_head
+{
+	color: white;
+}
+ #window_r {
+            width: 350px;
+            margin: 40px auto;
+            padding: 5% 1% 0% 0%;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            z-index: 150; display: none;
+             position: fixed; left: 0;right: 0;top:0;bottom: 0;
+        } 
+ #window_a {
+            width: 350px;
+            margin: 40px auto;
+            padding: 10% 1% 0% 0%;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            z-index: 150; display: none;
+             position: fixed; left: 0;right: 0;top:0;bottom: 0;
+        } 
+.form{
+	width: 275px;
+margin: -15px auto 20px auto;
+text-align: center;
+          } 
+
+#gray{opacity: 0.8;
+ padding: 15px;
+background-color: rgba(1,1,1,0.75);
+ position: fixed;
+  left: 0;
+  right: 0;
+  top:0;
+  bottom: 0;
+   display: none;
+    z-index:100; 
+    overflow: auto; } 
+
+#last_window
+{
+	background-image:url(images/main_s.jpg);
+	background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+    padding-bottom: 0;
+}
+
+footer
+{
+	background-color:black;
+	opacity:0.7;
+	height: 200px;
+}
+header
+{
+	background-color:black;
+	opacity:0.7;
+	height: 120px;
+}
+
+#uc
+{
+	display: none;
+}
+#cabinet
+{
+	background-image:url(images/cabinet.jpg);
+	background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+    padding-bottom: 0;
+}
+
+.lab
+{
+	color: white;
+}

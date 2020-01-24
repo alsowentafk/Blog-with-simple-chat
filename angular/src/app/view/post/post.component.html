@@ -1,0 +1,94 @@
+<app-nav></app-nav>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+  <section class="banner-section">
+  </section>
+  <section class="post-content-section">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
+
+          <h1 class="text-center">{{article.name}}</h1>
+          <ul class="list-inline text-center">
+            <li>{{article.user_id.login}} |</li>
+            <li>{{article.category}} |</li>
+            <li>{{article.created_at}} |</li>
+          </ul>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12">
+          <!--        <p class="lead">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>-->
+          <blockquote style="background-color: white">
+            <p>{{article.text}}</p>
+          </blockquote>
+          <div class="image-block">
+            <img [src]="getPicture(article)" alt="postPhoto" class="img-responsive">
+          </div>
+          <div class="row" *ngIf="cookieService.get('userAuthorization') != ''">
+            <img src="../../../assets/images/like.jpg" (click)="likePost()" height="60" width="60">
+            <p style="font-size: 30px">{{likes}}</p>
+          </div>
+          <h2 class="page-header">Comments</h2>
+          <form (ngSubmit)="onSubmit()" *ngIf="cookieService.get('userAuthorization') != ''" [formGroup]="commentForm" method="POST"
+                name="f1">
+            <h4>Write a comment</h4>
+            <div class="form-group">
+              <label for="text"></label>
+              <textarea [ngClass]="{ 'is-invalid': submitted && f1.text.errors}" class="form-control" formControlName="text" id="text" name="text"
+                        placeholder="Some text..."
+                        type="text"></textarea>
+              <div *ngIf="(f1.text.errors && (f1.text.dirty || f1.text.touched))
+              || (submitted && f1.text.errors)"
+                   class="text-danger">
+                <div *ngIf="f1.text.errors.required">
+                  Text is required.
+                </div>
+              </div>
+            </div>
+            <div style="text-align: right"><input class="btn btn-primary" name="sab" type="submit" value="Send"></div>
+          </form>
+          <section *ngFor="let comment of comments" class="comment-list">
+            <!-- First Comment -->
+            <article class="row">
+              <div class="col-md-2 col-sm-2 hidden-xs">
+                <figure class="thumbnail">
+                  <img class="img-responsive"
+                       [src]="getUserPhotoComment(comment.userId)"/>
+                  <figcaption class="text-center">{{comment.userId.login}}</figcaption>
+                </figure>
+              </div>
+              <div class="col-md-10 col-sm-10">
+                <div class="panel panel-default arrow left">
+                  <div class="panel-body">
+                    <header class="text-left" style="background-color: white">
+                      <div class="comment-user"><i class="fa fa-user"></i>{{comment.userId.login}}</div>
+                      <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014
+                      </time>
+                    </header>
+                    <div class="comment-post">
+                      <p>
+                        {{comment.text}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+        <div class="col-lg-3  col-md-3 col-sm-12">
+          <div class="well">
+            <h2>Про автора</h2>
+            <img [src]="getUserPhoto(article)" class="img-rounded" style="width: 70%; height: 80%"/>
+            <p>{{article.user_id.about}}</p>
+            <a class="btn btn-default" [routerLink]="['/account',article.user_id.user_id]">Read more</a>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /container -->
+  </section>
+</div>
+<app-footer></app-footer>
+

@@ -1,0 +1,84 @@
+<app-nav></app-nav>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!----------------------------------------------------------------------------->
+<div class="container">
+  <div class="row">
+    <div class="col-md-11">
+      <div style="text-align: center; display: flex; justify-content: center">
+        <div class="btn-toolbar" style="margin-left: 10%; margin-right: 10%; margin-bottom: 2%">
+          <div class="btn-group">
+            <button (click)="selectByCategory('Спорт')" class="btn btn-primary" type="submit">Спорт</button>
+            <button (click)="selectByCategory('Подорожі')" class="btn btn-primary" type="submit">Подорожі</button>
+            <button (click)="selectByCategory('Домашні улюбленці')" class="btn btn-primary" type="submit">Домашні
+              улюбленці
+            </button>
+            <button (click)="selectByCategory('Настільні ігри')" class="btn btn-primary" type="submit">Настільні ігри
+            </button>
+            <button (click)="getAllArticles()" class="btn btn-primary" type="submit">Показати всі</button>
+            <h2 *ngIf="articlesLength===0" style="text-align: center; margin-top: 10%">Немає публікацій за данною
+              каттегорією</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div style="text-align: center; display: flex; justify-content: center">
+        <form (ngSubmit)="displayAddPost()" method="post">
+          <button class="btn btn-success" type="submit">+ Додати пост</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!----------------------------------------------------------------------------->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 jasgrid">
+      <div *ngFor="let article of articles | slice:0:articlesLength/2" class="box-item">
+        <a [routerLink]="['/post', article.article_id]">
+          <div class="box-post">
+                      <span class="label label-success">
+                          <a href="#" rel="tag">{{article.category}}</a>
+                      </span>
+            <h1 class="post-title">
+              <a href="#">
+                {{article.text}}
+              </a>
+            </h1>
+            <span class="meta">
+                          <span><i class="glyphicon glyphicon-comment"></i> <a routerLink="posts">No Comments</a></span>
+                          <span><i class="glyphicon glyphicon-time"></i> {{article.created_at}}</span>
+                      </span>
+          </div>
+          <img [src]="getPicture(article)" alt="City in the sky: world's biggest hotel to open in Mecca" lass="">
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 jasgrid">
+      <div *ngFor="let article of articles | slice:articlesLength/2:articlesLength" class="box-item">
+        <a [routerLink]="['/post', article.article_id]">
+          <div class="box-post">
+                      <span class="label label-success">
+                          <a href="#" rel="tag">{{article.category}}</a>
+                      </span>
+            <h1 class="post-title">
+              <a href="#">
+                {{article.text}}
+              </a>
+            </h1>
+            <span class="meta">
+                          <span><i class="glyphicon glyphicon-comment"></i> <a routerLink="posts">No Comments</a></span>
+                          <span><i class="glyphicon glyphicon-time"></i> {{article.created_at}}</span>
+                      </span>
+          </div>
+          <img [src]="getPicture(article)" alt="City in the sky: world's biggest hotel to open in Mecca"
+               class="">
+        </a>
+      </div>
+    </div>
+  </div>
+</div> <!-- /container -->
+<app-footer></app-footer>
+

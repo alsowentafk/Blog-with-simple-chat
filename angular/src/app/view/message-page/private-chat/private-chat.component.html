@@ -1,0 +1,69 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <div style="text-align: center">
+        <h2>Список кімнат</h2>
+      </div>
+      <form id="searchForm" style="margin-bottom: 1%">
+        <input [(ngModel)]="filterRoom" aria-label="Search"
+               class="form-control form-control-sm ml-15 w-75" name="inputSearch" placeholder="Пошук" type="text"/>
+      </form>
+      <div *ngFor="let room of roomList | roomFilter: filterRoom">
+        <button class="list-group-item list-group-item-action" (click)="openRoom(room.name)"
+        >Відкрити кімнату {{room.name}}</button>
+      </div>
+    </div>
+    <div id="messageRoom" class="container">
+      <div class="row">
+        <div class="message-wrap col-lg-8">
+          <div class="msg-wrap" *ngFor="let message of roomMessages">
+            <div class="media msg ">
+              <a class="pull-left">
+                <img alt="64x64" class="media-object" data-src="holder.js/64x64" [src]="getUserPhoto(message.user_id)"
+                     style="width: 32px; height: 32px;">
+              </a>
+              <div class="media-body">
+                <small class="pull-right time"><i class="fa fa-clock-o"></i> {{message.date | date:'short'}}</small>
+                <h5 class="media-heading">{{message.user_id.login}}</h5>
+                <small class="col-lg-10">{{message.text}}</small>
+              </div>
+            </div>
+          </div>
+          <div class="send-wrap">
+            <textarea [(ngModel)]="sendMessageText" class="form-control send-message" placeholder="Write a reply..." rows="3"></textarea>
+          </div>
+          <div class="btn-panel">
+            <a class=" col-lg-4 text-right btn send-message-btn pull-right" (click)="sendMessage()" role="button"><i
+              class="fa fa-plus"></i> Send Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <button (click)="saveRoom()" class="btn btn-primary" style="margin-left: 80%">+ Додати кімнату</button>
+      <div id="saveRoom">
+        <form (ngSubmit)="onSubmit()" [formGroup]="roomForm" method="POST"
+              name="f1">
+          <div class="form-group">
+            <label class="reg_l" for="name">Введіть назву</label>
+            <input [ngClass]="{ 'is-invalid': submitted && f1.name.errors}" class="form-control" formControlName="name"
+                   id="name" name="name"
+                   placeholder="Name"
+                   type="text">
+            <div *ngIf="(f1.name.errors && (f1.name.dirty || f1.name.touched)) || (submitted && f1.name.errors)"
+                 class="text-danger">
+              <div *ngIf="f1.name.errors.required">
+                Name is required.
+              </div>
+            </div>
+          </div>
+          <input class="btn btn-primary" name="sab" type="submit" value="Додати">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

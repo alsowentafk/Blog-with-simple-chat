@@ -1,0 +1,90 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<app-nav></app-nav>
+<div class="btn-group" style="margin-left: 45%" role="group">
+  <button type="button" class="btn btn-secondary" (click)="switchPage('private')">Приватні</button>
+  <button type="button" class="btn btn-secondary" (click)="switchPage('general')">Загальні</button>
+</div>
+  <div *ngIf="switcher === 'private'">
+    <div id="chat" class="container">
+      <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:45%;">
+        <div class="col-xs-12 col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading top-bar">
+              <div class="col-md-8 col-xs-8">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chat - {{searchedUser.login}}</h3>
+              </div>
+              <div class="col-md-4 col-xs-4" style="text-align: right;">
+                <a><span (click)="closeChat()" class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1"></span></a>
+                <a><span (click)="hideChat()" id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
+              </div>
+            </div>
+            <div class="panel-body msg_container_base">
+              <div *ngFor="let message of messages">
+                <div *ngIf="message.user_id.user_id.toString() === this.cookieService.get('userIdAuthorization')"
+                     class="row msg_container base_sent">
+                  <div class="col-md-10 col-xs-10">
+                    <div class="messages msg_sent">
+                      <p>{{message.text}}</p>
+                      <time datetime="2009-11-13T20:00">{{message.date | date: 'short'}}</time>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-xs-2 avatar">
+                    <img [src]="getUserPhoto(getRealFirstUserId(chat))" class=" img-responsive ">
+                  </div>
+                </div>
+                <div id='receiverDiv' *ngIf="message.user_id.user_id === getRealSecondUserId(chat).user_id && checkDifferentUsers()"
+                     class="row msg_container base_receive">
+                  <div class="col-md-2 col-xs-2 avatar">
+                    <img [src]="getUserPhoto(getRealSecondUserId(chat))" class=" img-responsive ">
+                  </div>
+                  <div class="col-md-10 col-xs-10">
+                    <div class="messages msg_receive">
+                      <p>{{message.text}}</p>
+                      <time datetime="2009-11-13T20:00">{{message.date| date: 'short'}}</time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <div class="input-group">
+                <input id="btn-input" type="text"
+                       class="form-control input-sm chat_input"
+                       placeholder="Write your message here..." [(ngModel)]="sendTextMessage"/>
+                <span class="input-group-btn">
+                          <button class="btn btn-primary btn-sm" (click)="sendMessage()" id="btn-chat">Send</button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-inline" style="margin-top: 2%; text-align: center; justify-content: center; justify-items: center">
+    <input aria-label="Search" class="form-control set-width" placeholder="Search" name="input" [(ngModel)]="searchString" type="search">
+    <button class="btn btn-outline-success" type="submit" (click)="searchUser()">Search</button>
+  </div>
+  <div id="userCard" style="text-align: center; justify-content: center; margin-top: 1%" *ngIf="searchedUser.login!=''">
+    <h3 style="color: green">Знайдено користувача</h3>
+    <img [src]="getUserPhoto(searchedUser)" alt="postPhoto"
+         style="width: 250px; height: 300px; display:flex; margin-left: 40%">
+    <p>{{searchedUser.login}}</p>
+    <button class="btn-primary btn" id="button_closed_chat" (click)="openChat(searchedUser)">Відкрити чат з цим користувачем</button>
+  </div>
+  <div class="list-group" style="margin-top: 1%">
+    <a class="list-group-item list-group-item-action active">
+      Список приватних чатів
+    </a>
+    <div *ngFor="let chat of chatList">
+      <button class="list-group-item list-group-item-action"
+           (click)="openChat(getRealSecondUserId(chat))">Відкрити чат з {{getRealSecondUserId(chat).login}}</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="switcher === 'general'">
+  <app-private-chat></app-private-chat>
+</div>

@@ -1,0 +1,93 @@
+<app-nav></app-nav>
+<div class="container" style="margin-top: 10%">
+  <h1>Edit Profile</h1>
+  <hr>
+  <div class="row" style="margin-left: 10%; margin-top: 2%">
+    <div class="col-md-4">
+      <div class="text-center">
+        <img [src]=previewUrl alt="avatar" class="avatar img-circle" id="avatar" style="height: 250px; width: 250px">
+        <h6>Звантажте фото...</h6>
+        <input (change)="fileProgress($event)" accept="image/*" class="form-control-file" id="inputPhotoGame"
+               name="inputPhotoGame" type="file" value="Select file"/>
+      </div>
+    </div>
+
+    <div class="col-md-8 personal-info">
+      <h3>Персональна інформція</h3>
+      <form (ngSubmit)='onSubmit()' [formGroup]="updateForm" method="POST" name="updateForm">
+        <div class="form-group">
+          <label class="col-lg-3 control-label" for="updateLogin">Імя або логін:</label>
+          <div class="col-lg-8">
+            <input (change)="checkExistingLogin($event)" [ngClass]="{ 'is-invalid': submitted && f.updateLogin.errors || LoginExist}" [value]="userDefault.login" class="form-control"
+                   formControlName="updateLogin" id="updateLogin" name="updateLogin"
+                   placeholder="Jane"
+                   type="text">
+            <div *ngIf="(f.updateLogin.errors && (f.updateLogin.dirty)) || (submitted && f.updateLogin.errors)"
+                 class="text-danger">
+              <div *ngIf="f.updateLogin.errors.required">
+                Login is required.
+              </div>
+              <div *ngIf="f.updateLogin.errors.minlength">
+                Login must be at least 4 characters long.
+              </div>
+            </div>
+            <div *ngIf="LoginExist" class="text-danger">
+              Login exist.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label" for="birthday">День народження:</label>
+          <div class="col-lg-8">
+            <input [ngClass]="{ 'is-invalid': submitted && f.birthday.errors}" [value]="userDefault.birthday" class="form-control" formControlName="birthday"
+                   id="birthday" name="birthday"
+                   placeholder="30.01.2001"
+                   type="date">
+            <div *ngIf="(f.birthday.errors && (f.birthday.dirty)) || (submitted && f.birthday.errors)"
+                 class="text-danger">
+              <div *ngIf="f.birthday.errors.required">
+                birthday is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label" for="phone">Номер телефону:</label>
+          <div class="col-lg-8">
+            <input [ngClass]="{ 'is-invalid': submitted && f.phone.errors}" [value]="userDefault.phone" class="form-control" formControlName="phone"
+                   id="phone"
+                   name="phone" placeholder="096567896" type="text">
+            <div *ngIf="(f.phone.errors && (f.phone.dirty)) || (submitted && f.phone.errors)"
+                 class="text-danger">
+              <div *ngIf="f.phone.errors.required">
+                phone is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label" for="about">Щось про себе:</label>
+          <div class="col-lg-8">
+              <textarea [ngClass]="{ 'is-invalid': submitted && f.about.errors}" [value]="userDefault.about" class="form-control" formControlName="about"
+                        id="about"
+                        name="about" placeholder="Цікавий, веселий, життє радісний">
+              </textarea>
+            <div *ngIf="(f.about.errors && (f.about.dirty)) || (submitted && f.about.errors)"
+                 class="text-danger">
+              <div *ngIf="f.about.errors.required">
+                about is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <input class="btn btn-primary" type="submit" value="Save Changes">
+          <span></span>
+          <input class="btn btn-default" type="reset" value="Cancel">
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+</div>
+<app-footer></app-footer>

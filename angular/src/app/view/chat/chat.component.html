@@ -1,0 +1,46 @@
+<form method="POST"
+      name="f1">
+  <h4>Write a comment</h4>
+  <div class="form-group">
+    <label for="text"></label>
+    <textarea [ngClass]="" class="form-control" formControlName="text" id="text" name="text"
+              placeholder="Some text..."
+              type="text"></textarea>
+<!--    <div *ngIf="(f1.text.errors && (f1.text.dirty || f1.text.touched))-->
+<!--              || (submitted && f1.text.errors)"-->
+<!--         class="text-danger">-->
+<!--      <div *ngIf="f1.text.errors.required">-->
+<!--        Text is required.-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+  <div style="text-align: right"><input class="btn btn-primary" name="sab" type="submit" value="Send"></div>
+</form>
+<section  class="comment-list">
+  <!-- First Comment -->
+  <article class="row">
+    <div class="col-md-2 col-sm-2 hidden-xs">
+      <figure class="thumbnail">
+        <img class="img-responsive"
+             [src]=""/>
+        <figcaption class="text-center"></figcaption>
+      </figure>
+    </div>
+    <div class="col-md-10 col-sm-10">
+      <div class="panel panel-default arrow left">
+        <div class="panel-body">
+          <header class="text-left" style="background-color: white">
+            <div class="comment-user"><i class="fa fa-user"></i></div>
+            <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014
+            </time>
+          </header>
+          <div class="comment-post">
+            <p>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

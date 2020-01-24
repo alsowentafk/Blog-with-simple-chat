@@ -1,0 +1,43 @@
+.navbar {
+  background-color: darkred;
+  height: 10%;
+}
+
+.nav-item {
+  margin: 1%;
+}
+
+.set-width {
+  width: 600px;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-button {
+  color: white;
+  background-color: darkred;
+  border: none;
+}
+
+.nav-link:hover {
+  color: limegreen;
+}
+
+#cartLink {
+  width: 300px;
+}
+
+#logOut {
+  display: block;
+}
+
+#uc {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
