@@ -25,7 +25,7 @@
     "@material/select": "^4.0.0",
     "angular-bootstrap-md": "^8.7.0",
     "bootstrap": "^4.4.1",
-    "mat": "^1.0.9",
+    "mat": "^1.0.20",
     "mdbootstrap": "^4.10.0",
     "ngx-cookie-service": "^2.2.0",
     "ngx-mat-select-search": "^2.0.0",
